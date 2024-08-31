@@ -11,16 +11,20 @@ import {
   useColorModeValue,
   Text,
 } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom'; // Correct import
 import axios from 'axios';
-
+import { UserContext } from '../context/UserContext'; 
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [status, setStatus] = useState(''); 
-  const navigate=useNavigate();
+  const navigate = useNavigate();
+  const { setUser } = useContext(UserContext); // Access setUser from UserContext
+
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -29,9 +33,9 @@ const LoginForm = () => {
         email,
         password,
       });
-
+      setUser(response.data.user);
       setStatus('Login successful!');
-      navigate('/')
+      navigate('/'); // Navigate to the homepage or desired route
       
       console.log('Login response:', response.data);
     } catch (error) {
@@ -88,7 +92,7 @@ const LoginForm = () => {
             >
               Login
             </Button>
-            {status && ( // Display feedback message
+            {status && ( 
               <Text color={status.includes('Error') ? 'red.500' : 'green.500'} textAlign="center" mt={4}>
                 {status}
               </Text>

@@ -41,7 +41,7 @@ const Dashboard = () => {
       default:
         return (
           <div>
-            <h2>Welcome to VishnAlumni</h2>
+            <h2>Welcome to VishnuAlumni</h2>
           </div>
         );
     }
@@ -53,7 +53,7 @@ const Dashboard = () => {
         <nav>
           <div className="logo">
             <img src={logo} alt="logo" height="50" width="50" />
-            <p>VishnAlumni</p>
+            <p>VishnuAlumni</p>
           </div>
           <ul>
 
